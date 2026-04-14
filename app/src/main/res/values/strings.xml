@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Focus Timer</string>
+
+    <!-- Timer controls -->
+    <string name="start">Start</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="reset">Reset</string>
+    <string name="skip">Skip</string>
+
+    <!-- Timer phases -->
+    <string name="phase_focus">Focus</string>
+    <string name="phase_short_break">Short Break</string>
+    <string name="phase_long_break">Long Break</string>
+
+    <!-- Challenges -->
+    <string name="challenge_title">Daily Challenge</string>
+    <string name="challenge_complete_sessions">Complete %d focus sessions today</string>
+    <string name="challenge_no_skip">Finish a session without skipping</string>
+    <string name="challenge_streak">Maintain a 3-day streak</string>
+    <string name="challenge_total_minutes">Accumulate %d focus minutes</string>
+    <string name="challenge_completed">Challenge completed!</string>
+    <string name="challenge_progress">Progress: %1$d / %2$d</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_timer">Timer</string>
+    <string name="notification_channel_description">Timer notifications</string>
+    <string name="notification_timer_running">Focus Timer is running</string>
+    <string name="notification_time_remaining">Time remaining: %s</string>
+    <string name="notification_session_complete">Session complete!</string>
+
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="focus_duration">Focus Duration</string>
+    <string name="short_break_duration">Short Break Duration</string>
+    <string name="long_break_duration">Long Break Duration</string>
+    <string name="sessions_before_long_break">Sessions Before Long Break</string>
+    <string name="vibration_enabled">Vibration</string>
+    <string name="sound_enabled">Sound</string>
+
+    <!-- Stats -->
+    <string name="stats_title">Statistics</string>
+    <string name="total_sessions">Total Sessions</string>
+    <string name="total_focus_time">Total Focus Time</string>
+    <string name="current_streak">Current Streak</string>
+    <string name="best_streak">Best Streak</string>
+</resources>
