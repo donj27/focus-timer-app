@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary -->
-    <color name="primary">#FF6750A4</color>
-    <color name="on_primary">#FFFFFFFF</color>
-    <color name="primary_container">#FFEADDFF</color>
-    <color name="on_primary_container">#FF21005D</color>
+    <!-- Primary — warm dark brown / cream -->
+    <color name="primary">#FF2C2520</color>
+    <color name="on_primary">#FFF5F0EB</color>
+    <color name="primary_container">#FFE8E0D8</color>
+    <color name="on_primary_container">#FF1A1614</color>
 
-    <!-- Secondary -->
-    <color name="secondary">#FF625B71</color>
+    <!-- Secondary — warm copper / amber -->
+    <color name="secondary">#FFC4956A</color>
     <color name="on_secondary">#FFFFFFFF</color>
-    <color name="secondary_container">#FFE8DEF8</color>
-    <color name="on_secondary_container">#FF1D192B</color>
+    <color name="secondary_container">#FFF5E6D3</color>
+    <color name="on_secondary_container">#FF2E1E0F</color>
 
-    <!-- Tertiary -->
-    <color name="tertiary">#FF7D5260</color>
+    <!-- Tertiary — muted sage -->
+    <color name="tertiary">#FF5E7A65</color>
     <color name="on_tertiary">#FFFFFFFF</color>
 
-    <!-- Background and surface -->
-    <color name="background">#FFFFFBFE</color>
-    <color name="on_background">#FF1C1B1F</color>
-    <color name="surface">#FFFFFBFE</color>
-    <color name="on_surface">#FF1C1B1F</color>
+    <!-- Background and surface — warm parchment -->
+    <color name="background">#FFF5F0EB</color>
+    <color name="on_background">#FF1C1917</color>
+    <color name="surface">#FFFAF7F4</color>
+    <color name="on_surface">#FF1C1917</color>
 
-    <!-- Error -->
-    <color name="error">#FFB3261E</color>
+    <!-- Error — warm brick / terracotta -->
+    <color name="error">#FFB44D3D</color>
     <color name="on_error">#FFFFFFFF</color>
 
-    <!-- Timer specific -->
-    <color name="timer_focus">#FF4CAF50</color>
-    <color name="timer_break">#FF2196F3</color>
-    <color name="timer_long_break">#FF9C27B0</color>
+    <!-- Timer specific (kept for legacy compat) -->
+    <color name="timer_focus">#FFC4956A</color>
+    <color name="timer_break">#FF5E7A65</color>
+    <color name="timer_long_break">#FFB44D3D</color>
 </resources>

@@ -1,69 +1,68 @@
-# Focus Timer
+# App Guardian — Addiction Blocker
 
-An Android timer app that forces intentional engagement when the timer fires. Instead of a simple tap-to-dismiss alarm, the user must complete a challenge — making each timer's end a micro-ritual that requires brain activation.
+App Guardian helps you break addictive app habits by enforcing time limits with puzzle challenges. When your daily or weekly budget for an app runs out, App Guardian locks it behind a puzzle — making it genuinely hard to relapse.
 
-## Setup
+## How It Works
+
+1. **Add an app** — Pick any installed app you want to limit
+2. **Set a budget** — Choose daily or weekly time allowance (e.g., 30 min/day)
+3. **Choose a puzzle** — Select the challenge type that will gate access when time is up
+4. **Stay focused** — When the limit is hit, a puzzle overlay blocks the app until solved
+
+## Required Permissions
+
+App Guardian needs several special permissions that must be granted manually:
+
+### 1. Usage Access (Required)
+**Why:** Tracks how long each app is used  
+**How to grant:** Settings → Apps → Special app access → Usage access → App Guardian → Enable
+
+### 2. Display over other apps (Required)
+**Why:** Shows the puzzle lock screen on top of the blocked app  
+**How to grant:** Settings → Apps → Special app access → Display over other apps → App Guardian → Enable
+
+### 3. Notification permission (Required on Android 13+)
+**Why:** Shows the persistent monitoring notification  
+**How to grant:** Granted during first app launch via system dialog
+
+The app will show warning banners for any missing permissions with direct links to the settings pages.
+
+## Building
 
 ### Prerequisites
-- Android Studio Arctic Fox or later
 - JDK 17+
 - Android SDK 34
+- Android Studio Hedgehog or newer
 
-### Build & Install
+### Build debug APK
 ```bash
-./gradlew installDebug
+./gradlew assembleDebug
 ```
 
-### AdMob Setup
-The app ships with Google's **test AdMob app ID** (`ca-app-pub-3940256099942544~3347511713`) and test banner ad unit ID so it runs without crashing during development. Before publishing to the Play Store:
-1. Replace the AdMob app ID in `AndroidManifest.xml` with your production app ID:
-   ```xml
-   <meta-data
-       android:name="com.google.android.gms.ads.APPLICATION_ID"
-       android:value="YOUR_REAL_ADMOB_APP_ID" />
-   ```
-2. Replace the test banner ad unit ID in `AdManager.kt` with your production ad unit ID.
-
-### In-App Purchase Setup
-- Product ID: `focus_timer_premium`
-- Type: One-time (non-consumable) in-app purchase
-- Price: $1.99–$2.99 (configure in Google Play Console)
-
-## Challenge Types
-
-### Free Tier
-| Challenge | Description |
-|-----------|-------------|
-| **3-Digit Addition** | Solve a random addition problem with two 3-digit numbers (100–999). Fresh problem every time. |
-| **Preset Message** | Display your custom message. Tap "I Acknowledge" to dismiss. |
-| **Random Message** | Display a random motivational quote from a bundled bank. Tap to acknowledge. |
-
-### Premium Tier (unlocked via one-time purchase)
-| Challenge | Description |
-|-----------|-------------|
-| **3-Digit Multiplication** | Solve a random multiplication problem with two 3-digit numbers. |
-| **Science Question** | Answer a multiple-choice science trivia question (physics, chemistry, biology, astronomy). |
-| **Mindfulness** | Read a calming prompt and hold a button for 5 seconds to dismiss. |
-
-## Monetization
-
-- **Free tier**: 3 challenge types + banner ad on setup screen
-- **Premium tier**: One-time in-app purchase (~$1.99–$2.99) unlocks all 6 challenge types and removes ads
-- Ads only appear on the setup screen — never during an active countdown or challenge
-- Banner ads via **Google AdMob**
-- In-app purchases via **Google Play Billing Library**
-
-## Features
-- Foreground service keeps timer alive when navigating away
-- Screen rotation handled without losing timer state
-- All challenges generated locally — no network required
-- Offline-safe: timer and challenges work fully offline; ads simply don't show
-- No bypass — the only way to dismiss the alarm is completing the challenge
+APK output: `app/build/outputs/apk/debug/app-debug.apk`
 
 ## Architecture
-- **Language**: Kotlin
-- **UI**: Jetpack Compose with Material3
-- **Min SDK**: 26 (Android 8.0)
-- **Target SDK**: 34
-- **Timer**: Android `CountDownTimer` in a foreground service
-- **State**: ViewModel + StateFlow
+
+- **AppMonitorService** — Foreground service that polls `UsageStatsManager` every 30 seconds. Triggers puzzle overlay when a limit is exceeded.
+- **PuzzleOverlayActivity** — Full-screen Activity shown when a limit is hit. Back button disabled. Must solve puzzle to dismiss.
+- **BootReceiver** — Restarts `AppMonitorService` after device reboot.
+- **Room database** — Stores app limits and usage state persistently.
+
+## Puzzle Types
+
+| Type | Difficulty | Premium |
+|------|-----------|---------|
+| 3-digit Addition | Medium | Free |
+| 3-digit Multiplication | Hard | Premium |
+| Science Quiz | Hard | Premium |
+| Mindfulness Hold | Medium | Premium |
+| Preset Message | Easy | Free |
+| Random Quote | Easy | Free |
+
+## Bypass Resistance
+
+- Back button is disabled during puzzle
+- Activity excluded from recent apps
+- Screen turns on when limit is hit
+- Monitor service re-triggers puzzle if blocked app is opened again
+- `START_STICKY` service restarts if killed by OS
