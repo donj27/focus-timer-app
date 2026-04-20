@@ -1,3 +1,7 @@
+# Build outputs / APKs — rebuildable, keep out of history
+dist/
+*.apk
+
 # Android/Gradle
 *.iml
 .gradle
